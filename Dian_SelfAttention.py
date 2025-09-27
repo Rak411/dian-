@@ -17,7 +17,7 @@ class SelfAttention(nn.Module):
         print("K转置后形状:", k_transposed.shape)
 
         d_k = k.size(1)
-        scale = math.sqrt(d_k)
+        scale = d_k
         attention_scores = torch.matmul(q, k_transposed)
         # attention_scores: [seq_len, seq_len]
         
@@ -27,7 +27,7 @@ class SelfAttention(nn.Module):
 
         # 2. 注意力分数缩放
         d_k = k.size(1)
-        scale = d_k
+        scale = math.sqrt(d_k)
         attention_scores = attention_scores / scale
 
         # 3. 应用注意力掩码
@@ -72,3 +72,4 @@ def test_self_attention():
 
 
 test_self_attention()
+
