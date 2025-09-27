@@ -17,7 +17,7 @@ class SelfAttention(nn.Module):
         print("K转置后形状:", k_transposed.shape)
 
         d_k = k.size(1)
-        scale = d_k
+        scale = math.sqrt(d_k)
         attention_scores = torch.matmul(q, k_transposed)
         # attention_scores: [seq_len, seq_len]
         
@@ -69,5 +69,6 @@ def test_self_attention():
 
     model = SelfAttention()
     model.forward(Q,K,V,None)
+
 
 test_self_attention()
