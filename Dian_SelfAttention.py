@@ -15,9 +15,6 @@ class SelfAttention(nn.Module):
         # 1. 计算 Q * K^T
         k_transposed = k.transpose(0, 1)  # [3, 2] -> [2, 3]
         print("K转置后形状:", k_transposed.shape)
-
-        d_k = k.size(1)
-        scale = d_k
         attention_scores = torch.matmul(q, k_transposed)
         # attention_scores: [seq_len, seq_len]
         
@@ -72,4 +69,5 @@ def test_self_attention():
 
 
 test_self_attention()
+
 
